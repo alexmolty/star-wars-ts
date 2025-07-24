@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poller+One&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-fixed;
+    @apply font-poller;
+    @apply bg-sky;
+    @apply text-base-color;
+  }
+  h1 {
+    font-size: var(--text-2xl);
+  }
+  h2 {
+    font-size: var(--text-xl);
+  }
+}
+@theme base {
+  --font-poller: "Poller One", serif;
+  --background-image-sky: url("./assets/sky.jpg");
+  --color-base-color: #eedb00;
+  --color-gray-color: rgba(60, 69, 67, 0.6);
+  --color-red-color: rgba(204, 3, 35, 0.5);
+  --shadow-hero: 0.6rem 0.6rem 0.6rem rgba(60, 69, 67, 0.6);
+  --color-contact-color: #f2f2f2;
+}
