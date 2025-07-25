@@ -1,19 +1,19 @@
-import {base_url, period_month} from "../utils/constants.ts";
+import {base_url, period_month} from "../../../utils/constants.ts";
 import {useEffect, useState} from "react";
 
 interface infoHero {
-    name?: string;
-    gender?: string;
-    birth_year?: string;
-    height?: string;
-    mass?: number;
-    hair_color?: string;
-    skin_color?: string;
-    eye_color?: string;
+    name: string;
+    gender: string;
+    birth_year: string;
+    height: string;
+    mass: number;
+    hair_color: string;
+    skin_color: string;
+    eye_color: string;
 }
 
 const AboutMe = () => {
-    const [hero, setHero] = useState<infoHero | undefined>();
+    const [hero, setHero] = useState<Partial<infoHero>>();
     useEffect(() => {
         const hero = JSON.parse(localStorage.getItem("hero")!);
         if (hero && ((Date.now() - hero.timestamp) < period_month)) {
@@ -22,7 +22,7 @@ const AboutMe = () => {
             fetch(`${base_url}/v1/peoples/1`)
                 .then(response => response.json())
                 .then(data => {
-                    const info: infoHero = {
+                    const info: Partial<infoHero> = {
                         name: data.name,
                         gender: data.gender,
                         birth_year: data.birth_year,

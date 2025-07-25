@@ -1,4 +1,4 @@
-import {starWarsInfo} from "../utils/constants.ts";
+import {starWarsInfo} from "../../../utils/constants.ts";
 
 const StarWars = () => {
     return (

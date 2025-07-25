@@ -1,4 +1,4 @@
-import {friends} from "../utils/constants.ts";
+import {friends} from "../../../utils/constants.ts";
 import Friend from "./Friend.tsx";
 
 const DreamTeam = () => {

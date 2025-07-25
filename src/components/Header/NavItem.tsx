@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {StarWarsContext} from "../utils/context.ts";
+import {StarWarsContext} from "../../utils/context.ts";
 interface NavItemProps {
     itemTitle: string;
 }
