@@ -25,7 +25,7 @@ const Contact = () => {
     }, []);
 
     const labelClasses = "text-center m-4 py-5 rounded-xl w-96";
-    const inputClasses = "mx-8 px-7 py-2 text-center text-blue-50 bg-transparent border border-amber-300 rounded placeholder:text-blue-50 placeholder:opacity-100";
+    const inputClasses = "mx-8 px-7 text-center text-blue-50 bg-transparent border border-amber-300 rounded placeholder:text-blue-50 placeholder:opacity-100";
 
     return (
         <form

@@ -1,25 +1,21 @@
-import {base_url, period_month} from "../../../utils/constants.ts";
+import {characters, period_month} from "../../../utils/constants.ts";
 import {useEffect, useState} from "react";
+import {useParams} from "react-router";
+import type {infoHero} from "../../../utils/types";
 
-interface infoHero {
-    name: string;
-    gender: string;
-    birth_year: string;
-    height: string;
-    mass: number;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-}
 
 const AboutMe = () => {
     const [hero, setHero] = useState<Partial<infoHero>>();
+    const {heroId} = useParams();
+    const selectedName = ((heroId && heroId in characters) ? heroId : "luke") as keyof typeof characters;
+
     useEffect(() => {
-        const hero = JSON.parse(localStorage.getItem("hero")!);
-        if (hero && ((Date.now() - hero.timestamp) < period_month)) {
-            setHero(hero.payload);
+        const storedData = localStorage.getItem(selectedName);
+        const heroData = storedData ? JSON.parse(storedData) : null;
+        if (heroData && ((Date.now() - heroData.timestamp) < period_month)) {
+            setHero(heroData.payload);
         } else {
-            fetch(`${base_url}/v1/peoples/1`)
+            fetch(characters[selectedName].url)
                 .then(response => response.json())
                 .then(data => {
                     const info: Partial<infoHero> = {
@@ -33,23 +29,31 @@ const AboutMe = () => {
                         eye_color: data.eye_color
                     }
                     setHero(info);
-                    localStorage.setItem("hero", JSON.stringify({
+                    localStorage.setItem(selectedName, JSON.stringify({
                         payload: info,
                         timestamp: Date.now()
                     }));
                 })
-        }
-    }, [])
 
+        }
+    }, [heroId, selectedName])
+    if (!hero) return null;
     return (
         <>
-            {(!!hero) &&
-                <div className='text-2xl leading-11 text-justify ml-[48px]'>
+            {hero &&
+                <div className='max-w-4xl mx-auto m-15 flex gap-10 font-bold '>
+                    <div className="flex flex-col items-center w-1/2">
+                    <h1 className="mt-4 text-3xl font-bold">{characters[selectedName].name}</h1>
+                    <img src={characters[selectedName].img} alt={characters[selectedName].name} className={"rounded-lg w-full object-cover"}/>
+                    </div>
+                    <div className="w-1/2 text-left text-xl my-10">
                     {(Object.keys(hero) as (keyof infoHero)[]).map(key =>
-                        <p key={key}>
-                            <span className={'text-3xl capitalize'}>{key.replace('_', ' ')}</span>
+                        <p key={key} className={"text-2xl"}>
+                            <span className={'font-semibold capitalize'}>{key.replace('_', ' ')}</span>
                             : {hero[key]}
-                        </p>)}
+                        </p>
+                    )}
+                    </div>
                 </div>
             }
         </>
