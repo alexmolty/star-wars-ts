@@ -1,6 +1,6 @@
 export interface SWContextValue {
-    page: string,
-    changePage: (page: string) => void,
+    hero: string,
+    changeHero: (hero: string) => void,
 }
 
 export interface infoHero {
@@ -14,8 +14,10 @@ export interface infoHero {
     eye_color: string;
 }
 
-export interface charactersInterface {
+export interface Character {
     name: string;
     img: string;
     url: string;
 }
+
+export type Characters = Record<string, Character>

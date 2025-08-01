@@ -1,15 +1,15 @@
-import Home from "./Main/home/Home.tsx";
-import AboutMe from "./Main/aboutMe/AboutMe.tsx";
-import StarWars from "./Main/starWars/StarWars.tsx";
-import Contact from "./Main/contact/Contact.tsx";
-import {navItems} from "../utils/constants.ts";
+import Home from "./home/Home.tsx";
+import AboutMe from "./aboutMe/AboutMe.tsx";
+import StarWars from "./starWars/StarWars.tsx";
+import Contact from "./contact/Contact.tsx";
+import {navItems} from "../../utils/constants.ts";
 import {Route, Routes} from "react-router";
-import ErrorPage from "./Main/ErrorPage/ErrorPage.tsx";
+import ErrorPage from "./ErrorPage/ErrorPage.tsx";
 
 const Main = () => {
     return (
         <Routes>
-            {['/', navItems[0]].map(path => <Route key={path} path={path} element={<Home/>} />)}
+            {['/', navItems[0], `${navItems[0]}/:heroId`].map(path => <Route key={path} path={path} element={<Home/>} />)}
             {[navItems[1], `${navItems[1]}/:heroId`].map(path => <Route key={path} path={path} element={<AboutMe/>} />)}
             {/*<Route path={`${navItems[1]}`} element={<AboutMe/>}/>*/}
             <Route path={`${navItems[2]}`} element={<StarWars/>}/>
