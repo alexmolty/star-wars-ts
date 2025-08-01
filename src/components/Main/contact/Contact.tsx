@@ -1,8 +1,12 @@
 import {useEffect, useState} from "react";
 import {base_url, period_month} from "../../../utils/constants.ts";
+import {useErrorPage} from "../../../hooks/useErrorPage.tsx";
+import ErrorPage from "../ErrorPage/ErrorPage.tsx";
 
 const Contact = () => {
     const [planets, setPlanets] = useState(['wait...']);
+    const {isError} = useErrorPage();
+
 
     async function getPlanets() {
         const res = await fetch(`${base_url}/v1/planets`);
@@ -27,7 +31,7 @@ const Contact = () => {
     const labelClasses = "text-center m-4 py-5 rounded-xl w-96";
     const inputClasses = "mx-8 px-7 text-center text-blue-50 bg-transparent border border-amber-300 rounded placeholder:text-blue-50 placeholder:opacity-100";
 
-    return (
+    return !isError ? (
         <form
             className="rounded-t-2xl px-4 bg-transparent grid justify-items-center"
             onSubmit={e => e.preventDefault()}
@@ -83,7 +87,7 @@ const Contact = () => {
                 Submit
             </button>
         </form>
-    );
+    ) : <ErrorPage/>
 };
 
 export default Contact;

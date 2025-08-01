@@ -1,20 +1,16 @@
-import {characters, defaultHero, period_month} from "../../../utils/constants.ts";
-import {useContext, useEffect, useState} from "react";
-import {useParams} from "react-router";
+import {characters, period_month} from "../../../utils/constants.ts";
+import {useEffect, useState} from "react";
 import type {infoHero} from "../../../utils/types";
-import {StarWarsContext} from "../../../utils/context.ts";
 import ErrorPage from "../ErrorPage/ErrorPage.tsx";
+import {useErrorPage} from "../../../hooks/useErrorPage.tsx";
 
 
 const AboutMe = () => {
         const [hero, setHero] = useState<Partial<infoHero>>();
-        const {heroId} = useParams();
-        const {changeHero} = useContext(StarWarsContext);
-        const selectedHero = heroId ?? defaultHero;
+        const {isError, selectedHero} = useErrorPage();
 
         useEffect(() => {
-                if (!(selectedHero in characters)) return;
-                changeHero(selectedHero);
+            if (isError) return;
                 const storedData = localStorage.getItem(selectedHero);
                 const heroData = storedData ? JSON.parse(storedData) : null;
                 if (heroData && ((Date.now() - heroData.timestamp) < period_month)) {
@@ -43,7 +39,7 @@ const AboutMe = () => {
                 }
             }, [selectedHero]
         )
-        return (selectedHero in characters) ? (
+        return !isError ? (
             <>
                 {hero &&
                     <div className='max-w-4xl mx-auto m-10 flex gap-8 font-bold '>
