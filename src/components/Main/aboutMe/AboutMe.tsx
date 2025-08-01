@@ -3,6 +3,7 @@ import {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router";
 import type {infoHero} from "../../../utils/types";
 import {StarWarsContext} from "../../../utils/context.ts";
+import ErrorPage from "../ErrorPage/ErrorPage.tsx";
 
 
 const AboutMe = () => {
@@ -42,8 +43,7 @@ const AboutMe = () => {
                 }
             }, [selectedHero]
         )
-        if (!hero) return null;
-        return (
+        return (selectedHero in characters) ? (
             <>
                 {hero &&
                     <div className='max-w-4xl mx-auto m-10 flex gap-8 font-bold '>
@@ -62,7 +62,7 @@ const AboutMe = () => {
                     </div>
                 }
             </>
-        );
+        ) : <ErrorPage/>
     }
 ;
 
