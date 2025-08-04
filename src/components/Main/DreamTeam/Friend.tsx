@@ -15,7 +15,7 @@ const Friend = ({friend, pos}:FriendProps) => {
         styles += 'rounded-br-2xl';
     }
     return (
-        <NavLink to={`/${navItems[0]}/${friend}`}>
+        <NavLink to={`/${navItems[1]}/${friend}`}>
         <img className={styles} src={characters[friend].img} alt={characters[friend].img}/>
         </NavLink>
     );

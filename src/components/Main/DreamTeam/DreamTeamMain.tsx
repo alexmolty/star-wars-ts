@@ -4,7 +4,7 @@ import OpeningCrawl from "./OpeningCrawl.tsx";
 import ErrorPage from "../ErrorPage/ErrorPage.tsx";
 import {useErrorPage} from "../../../hooks/useErrorPage.tsx";
 
-const Home = () => {
+const DreamTeamMain = () => {
     const {isError} = useErrorPage();
     return !isError ? (
         <main className="clear-both">
@@ -15,4 +15,4 @@ const Home = () => {
     ) : <ErrorPage/>
 };
 
-export default Home;
+export default DreamTeamMain;

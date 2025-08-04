@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {base_url} from "../../../utils/constants.ts";
 
-const OpeningCrawl = () => {
+const Home = () => {
     const [openingCrawl, setOpeningCrawl] = useState('Loading...');
 
     useEffect(() => {
@@ -34,4 +34,4 @@ const OpeningCrawl = () => {
 
 }
 
-export default OpeningCrawl;
+export default Home;

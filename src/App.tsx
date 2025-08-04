@@ -9,7 +9,7 @@ function App() {
     const [hero, setHero] = useState<string | undefined>(defaultHero);
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen p-3">
             <StarWarsContext value={{hero, changeHero: setHero}}>
                 <Header/>
                 <Main/>
