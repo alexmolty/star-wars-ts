@@ -1,13 +1,14 @@
 import {NavLink} from "react-router";
 import {useContext} from "react";
 import {StarWarsContext} from "../../utils/context.ts";
+import {defaultHero} from "../../utils/constants.ts";
 
 interface NavItemProps {
     itemTitle: string;
 }
 
 const NavItem = ({itemTitle}: NavItemProps) => {
-    const {hero} = useContext(StarWarsContext);
+    const {hero = defaultHero} = useContext(StarWarsContext);
 
     return (
         <NavLink

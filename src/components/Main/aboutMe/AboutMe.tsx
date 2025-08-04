@@ -10,7 +10,7 @@ const AboutMe = () => {
         const {isError, selectedHero} = useErrorPage();
 
         useEffect(() => {
-            if (isError) return;
+                if (isError) return;
                 const storedData = localStorage.getItem(selectedHero);
                 const heroData = storedData ? JSON.parse(storedData) : null;
                 if (heroData && ((Date.now() - heroData.timestamp) < period_month)) {
@@ -41,7 +41,7 @@ const AboutMe = () => {
         )
         return !isError ? (
             <>
-                {hero &&
+                {(!!hero) &&
                     <div className='max-w-4xl mx-auto m-10 flex gap-8 font-bold '>
                         <div className="flex flex-col items-center w-[100%]">
                             <img src={characters[selectedHero].img} alt={characters[selectedHero].name}

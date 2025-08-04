@@ -10,14 +10,14 @@ export const useErrorPage = () => {
 
     useEffect(() => {
         if (!(selectedHero in characters)) {
-            return;
+            changeHero()
+        } else {
+            changeHero(selectedHero);
         }
-        changeHero(selectedHero);
     }, [selectedHero]);
 
     return {
         isError: (!(selectedHero in characters)),
         selectedHero,
-        headerError: "Error",
     }
 }
