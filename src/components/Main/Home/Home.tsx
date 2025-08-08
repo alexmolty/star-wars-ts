@@ -6,13 +6,13 @@ export const Home = () => {
     const [openingCrawl, setOpeningCrawl] = useState<string>("Loading...");
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
-    const [animationKey, setAnimationKey] = useState<number>(0); // для перезапуска анимации
+    const [animationKey, setAnimationKey] = useState<number>(0);
 
     const fetchOpeningCrawl = async (episodeNum: number) => {
         const saved = localStorage.getItem(`opening_crawl_${episodeNum}`);
         if (saved) {
             setOpeningCrawl(saved);
-            setAnimationKey((k) => k + 1); // обновляем ключ — перезапускаем анимацию
+            setAnimationKey(k => k + 1);
             return;
         }
 
@@ -27,8 +27,8 @@ export const Home = () => {
             setOpeningCrawl(data.opening_crawl);
             localStorage.setItem(`opening_crawl_${episodeNum}`, data.opening_crawl);
             localStorage.setItem("last_episode", episodeNum.toString());
-            setAnimationKey((k) => k + 1); // обновляем ключ при загрузке нового текста
-        } catch (e) {
+            setAnimationKey(k => k + 1);
+        } catch {
             setError("Не удалось загрузить opening crawl");
             setOpeningCrawl("");
         } finally {
@@ -54,8 +54,12 @@ export const Home = () => {
             {error && <p className="text-red-600 mt-4">{error}</p>}
 
             {openingCrawl && !loading && !error && (
-                <div className="perspective-container" key={animationKey}>
-                    <div className="crawl-text">{openingCrawl}</div>
+                <div className="star-wars-container pointer-events-none" key={animationKey}>
+                    <div className="crawl">
+                        {openingCrawl.split("\n").map((line, i) => (
+                            <p key={i}>{line}</p>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

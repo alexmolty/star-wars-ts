@@ -27,54 +27,42 @@
   --color-contact-color: #f2f2f2;
 }
 
-/* контейнер: прозрачный и не перехватывает клики */
-.perspective-container {
-    perspective: 600px;
-    perspective-origin: 50% 100%;
+.star-wars-container {
     position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;
-    /* подгони высоту так, чтобы контейнер не закрывал header/footer */
-    top: 120px;      /* или убери/измени в зависимости от layout */
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-    width: 100vw;
-    background: transparent;   /* прозрачный фон */
-    pointer-events: none;      /* клики проходят сквозь контейнер */
-    z-index: 0;                /* ниже, чем кнопки (кнопки можно поднять) */
+    display: flex;
+    justify-content: center;
+    perspective: 400px;
+    z-index: 1;
+    background: transparent;
+    pointer-events: none; /* чтобы кнопки работали */
 }
 
-/* сам текст — центрируем и даём тень для читаемости */
-.crawl-text {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform-origin: 50% 100%;
-    transform: translateX(-50%) rotateX(25deg) translateZ(0) scaleX(1);
-    animation: crawlUp 45s linear forwards;
-    font-size: 3.5rem;           /* подгони по своему вкусу */
-    line-height: 1.4;
+.crawl {
+    position: relative;
+    top: 100vh; /* старт ниже экрана */
+    width: 80%;
+    font-size: 4rem;
+    font-weight: bold;
     color: #feda4a;
-    font-weight: 700;
-    width: 100vw;
-    padding: 0 5vw;
-    box-sizing: border-box;
     text-align: justify;
-
-    /* тень (чтобы чтение нормально с любым фоном) */
-    text-shadow:
-            0 2px 2px rgba(0,0,0,0.6),
-            0 6px 10px rgba(0,0,0,0.5);
-    /* важное: не даём контейнеру перехватывать клики, но если нужно взаимодействие с текстом,
-       можно включить pointer-events только у текста (влекло бы блокировку кнопок) */
-    pointer-events: none; /* оставляем, чтобы текст тоже не мешал кликам */
+    letter-spacing: 4px;
+    line-height: 1.5;
+    transform-origin: 50% 100%;
+    animation: crawl 60s linear forwards;
 }
 
-@keyframes crawlUp {
+@keyframes crawl {
     0% {
-        transform: translateX(-50%) rotateX(25deg) translateZ(0) translateY(0) scaleX(1);
+        top: 100vh;
+        transform: rotateX(20deg) translateZ(0);
     }
     100% {
-        transform: translateX(-50%) rotateX(25deg) translateZ(-400px) translateY(-250%) scaleX(0.35);
+        top: -5000px; /* чем больше — тем дольше текст на экране */
+        transform: rotateX(25deg) translateZ(-2500px);
     }
 }
