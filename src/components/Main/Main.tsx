@@ -5,7 +5,7 @@ import Contact from "./contact/Contact.tsx";
 import {navItems} from "../../utils/constants.ts";
 import {Route, Routes} from "react-router";
 import ErrorPage from "./ErrorPage/ErrorPage.tsx";
-import Home from "./Home/Home.tsx";
+import {Home} from "./Home/Home.tsx";
 
 const Main = () => {
     return (

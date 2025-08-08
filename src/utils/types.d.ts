@@ -2,7 +2,10 @@ export interface SWContextValue {
     hero?: string,
     changeHero: (hero?: string) => void,
 }
-
+export interface Episode {
+    ep: string;
+    num: number;
+}
 export interface infoHero {
     name: string;
     gender: string;

@@ -67,6 +67,19 @@ export const characters: Characters = {
 export const friends = Object.keys(characters);
 export const defaultHero = friends[0];
 export const navItems = ['Home', 'Dream Team', 'About me', 'Star Wars', 'Contact'];
+export interface Episode {
+    ep: string;
+    num: number;
+}
+
+export const episodes: Episode[] = [
+    { ep: "I", num: 4 },
+    { ep: "II", num: 5 },
+    { ep: "III", num: 6 },
+    { ep: "IV", num: 1 },
+    { ep: "V", num: 2 },
+    { ep: "VI", num: 3 },
+];
 export const period_month = 30 * 24 * 60 * 60 * 1000;
 export const starWarsInfo = `Star Wars is an American epic space opera media franchise created by George Lucas,
  which began with the eponymous 1977 film and quickly became a worldwide pop culture phenomenon. The franchise
